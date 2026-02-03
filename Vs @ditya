@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aditya</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ff4d6d;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+            transition: background-color 2s ease;
+        }
+
+        .heart {
+            font-size: 100px;
+            animation: heartbeat 1.2s infinite;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        #container {
+            max-width: 600px;
+            padding: 30px;
+            border: 1px solid #ff4d6d;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.4);
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        button {
+            background: transparent;
+            border: 2px solid #ff4d6d;
+            color: #ff4d6d;
+            padding: 12px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #ff4d6d;
+            color: white;
+            box-shadow: 0 0 15px #ff4d6d;
+        }
+
+        #no-btn {
+            position: relative;
+            transition: 0.1s;
+        }
+
+        #response {
+            margin-top: 25px;
+            font-size: 24px;
+            color: #fff;
+            text-shadow: 0 0 10px #ff4d6d;
+        }
+
+        /* Floating particles effect */
+        .particle {
+            position: absolute;
+            background: rgba(255, 77, 109, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 5s infinite linear;
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body onclick="playMusic()">
+
+    <audio id="romantic-song" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="heart" onclick="playMusic()">❤️</div>
+
+    <div id="container">
+        <h1>system.execute("Love_Story");</h1>
+        <p id="poem">
+            Aditya, you're the <strong>source code</strong> of my joy,<br>
+            A connection no firewall could ever destroy.<br>
+            My heart executes a perfect loop for you,<br>
+            A recursive love that's forever true.
+        </p>
+
+        <h2 style="color: white; margin-top: 20px;">Will you be my Valentine?</h2>
+
+        <div class="buttons">
+            <button onclick="sayYes()">YES</button>
+            <button id="no-btn" onmouseover="moveButton()">NO</button>
+        </div>
+
+        <div id="response"></div>
+    </div>
+
+    <script>
+        const song = document.getElementById('romantic-song');
+        let musicStarted = false;
+
+        function playMusic() {
+            if (!musicStarted) {
+                song.play();
+                musicStarted = true;
+            }
+        }
+
+        function sayYes() {
+            playMusic();
+            document.getElementById('response').innerHTML = "ACCESS GRANTED. ❤️<br>I'm yours, Aditya!";
+            document.querySelector('.buttons').style.display = 'none';
+            document.body.style.backgroundColor = "#4a000e";
+            createParticles();
+        }
+
+        function moveButton() {
+            const btn = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function createParticles() {
+            for(let i=0; i<50; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.width = p.style.height = Math.random() * 10 + 5 + 'px';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(p);
+            }
+        }
+    </script>
+</body>
+</html>
